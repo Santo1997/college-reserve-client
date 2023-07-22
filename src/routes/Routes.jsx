@@ -6,6 +6,7 @@ import Signup from "../components/pages/signup/Signup";
 import Colleges from "../components/pages/colleges/Colleges";
 import Admission from "../components/pages/admission/Admission";
 import MyClg from "../components/pages/myClg/MyClg";
+import Reset from "../components/pages/reset/Reset";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <Login />,
+      },
+      {
+        path: "/reset",
+        element: <Reset />,
       },
       {
         path: "/signup",

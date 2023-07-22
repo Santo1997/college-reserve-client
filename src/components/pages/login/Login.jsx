@@ -71,6 +71,13 @@ const Login = () => {
                 className="input input-bordered setInput"
                 required
               />
+              <label className="label">
+                <Link to="/reset">
+                  <span href="#" className="label-text-alt link link-hover">
+                    Forgot password?
+                  </span>
+                </Link>
+              </label>
             </div>
             {err && (
               <>

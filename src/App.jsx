@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Outlet />
       </div>
       <Footer />
+      <Toaster />
     </>
   );
 }
