@@ -16,10 +16,10 @@ const Links = () => {
         <Activelink to="/my_college">My College</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/login">Sign In</Activelink>
+        <Activelink to="/signin">Sign In</Activelink>
       </li>
       <li className="text-lg">
-        <Activelink to="/logout">Sign Out</Activelink>
+        <Activelink to="/signup">Sign Up</Activelink>
       </li>
       <li className="text-lg">
         <Activelink to="/profile">Profile</Activelink>
