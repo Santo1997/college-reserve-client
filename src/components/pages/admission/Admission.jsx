@@ -1,18 +1,24 @@
-import ClgList from "../../loader/ClgList";
+import { useContext } from "react";
 import SectionTitle from "../../loader/SectionTitle";
+import { ClgContext } from "../../../App";
 
 const Admission = () => {
+  const clgData = useContext(ClgContext);
   return (
     <div>
       <SectionTitle heading="Admission"></SectionTitle>
       <div className="hero  place-items-stretch">
-        <div className="hero-content flex-col lg:flex-row">
-          <div className="text-center w-full">
+        <div className="hero-content flex-col lg:flex-row items-start">
+          <div className="text-left w-full">
             <h1 className="text-3xl font-bold mb-4 text-info">
               Select Your College Now
             </h1>
             <ul className="list-[square] list-inside text-black">
-              <ClgList />
+              {clgData.map((clg) => (
+                <li className="hover:text-info mb-2" key={clg._id}>
+                  {clg.college_name}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="card  w-full shadow-2xl bg-base-100">
@@ -96,7 +102,7 @@ const Admission = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Submit</button>
+                <button className="btn btn-info text-white">Submit</button>
               </div>
             </form>
           </div>

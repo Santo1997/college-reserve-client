@@ -7,18 +7,30 @@ import Galeries from "./homeLayouts/Galeries";
 import RegisterInfo from "./homeLayouts/RegisterInfo";
 import Research from "./homeLayouts/Research";
 import Review from "./homeLayouts/Review";
+import { useContext, useEffect, useState } from "react";
+import { ClgContext } from "../../../App";
 
 const Home = () => {
+  const clgData = useContext(ClgContext);
+  const [colleges, setColleges] = useState([]);
+
+  useEffect(() => {
+    const sortedColleges = clgData.sort((a, b) => b.rating - a.rating);
+    setColleges(sortedColleges);
+  }, [clgData]);
+
+  const popularClg = colleges.slice(0, 3);
+
   return (
     <>
       <SearchBar /> {/*  onSearch={handleSearch} */}
       <Intro />
-      <CollegesCard />
+      <CollegesCard popularClg={popularClg} />
       <AddButton button="View More" />
       <AddClgInfo />
-      <Galeries />
+      <Galeries clgData={clgData} />
       <RegisterInfo />
-      <Research />
+      <Research clgData={clgData} />
       <Review />
     </>
   );

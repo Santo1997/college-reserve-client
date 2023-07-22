@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     // errorElement: <Error />,
-    // loader: () => fetch(`https://assign12-camp-server.vercel.app/courses`),
+    loader: () => fetch(`./local.json`),
     children: [
       {
         path: "/",
