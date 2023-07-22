@@ -1,0 +1,7 @@
+#root {
+  width: 100%;
+}
+
+.setInput {
+  @apply bg-white border border-slate-500 focus:outline-none focus:border-info text-slate-500 focus:text-info;
+}
