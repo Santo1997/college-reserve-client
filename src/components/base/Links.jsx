@@ -41,7 +41,7 @@ const Links = () => {
             </button>
           </li>
           <li className="text-lg">
-            <Activelink to="/">
+            <Activelink to="/profile">
               {user.displayName !== null ? (
                 <>
                   <div className="avatar">

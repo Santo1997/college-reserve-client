@@ -8,6 +8,8 @@ import Admission from "../components/pages/admission/Admission";
 import MyClg from "../components/pages/myClg/MyClg";
 import Reset from "../components/pages/reset/Reset";
 import PrivateRoutes from "./PrivateRoutes";
+import Profile from "../components/pages/profile/Profile";
+import EditProfile from "../components/pages/profile/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <MyClg />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/edit_profile",
+        element: (
+          <PrivateRoutes>
+            <EditProfile />
           </PrivateRoutes>
         ),
       },
