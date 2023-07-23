@@ -2,17 +2,39 @@ import { useContext } from "react";
 import SectionTitle from "../../utilities/SectionTitle";
 import { ClgContext } from "../../../App";
 import { useForm } from "react-hook-form";
+import api from "../../utilities/axiosAccess";
+import { useNavigate } from "react-router-dom";
 
 const Admission = () => {
   const clgData = useContext(ClgContext);
+  const navigate = useNavigate();
+  const from = "/my_college";
+
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const newCandidate = {
+      clgName: data.clg,
+      candidName: data.candidName,
+      subject: data.subject,
+      email: data.email,
+      phone: data.phone,
+      address: data.address,
+      birth: data.birth,
+      img: data.img,
+    };
+
+    api.post("/candidates", newCandidate).then((res) => {
+      if (res.data.insertedId) {
+        reset();
+        navigate(from, { replace: true });
+      }
+    });
   };
 
   return (
@@ -35,9 +57,7 @@ const Admission = () => {
                   {...register("clg", { required: true })}
                   className="select select-info w-full col-span-3"
                 >
-                  <option disabled selected>
-                    Select language
-                  </option>
+                  <option value="dfgh">Select language</option>
                   {clgData.map((clg) => (
                     <option
                       value={clg.college_name}

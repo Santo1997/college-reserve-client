@@ -29,11 +29,12 @@ const Links = () => {
       <li className="text-lg">
         <Activelink to="/admission">Admission</Activelink>
       </li>
-      <li className="text-lg">
-        <Activelink to="/my_college">My College</Activelink>
-      </li>
+
       {user ? (
         <>
+          <li className="text-lg">
+            <Activelink to="/my_college">My College</Activelink>
+          </li>
           <li className="text-lg">
             <button className="btn-md" onClick={handleLogOut}>
               LogOut

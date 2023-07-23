@@ -7,6 +7,7 @@ import Colleges from "../components/pages/colleges/Colleges";
 import Admission from "../components/pages/admission/Admission";
 import MyClg from "../components/pages/myClg/MyClg";
 import Reset from "../components/pages/reset/Reset";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/my_college",
-        element: <MyClg />,
+        element: (
+          <PrivateRoutes>
+            <MyClg />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/signin",
