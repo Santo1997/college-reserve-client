@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import SectionTitle from "../../utilities/SectionTitle";
 import ClgCard from "./ClgCard";
 import { BiMenuAltRight } from "react-icons/bi";
-import { ClgContext } from "../../../App";
+import useDataLoader from "../../../hooks/useDataLoader";
 
 const Colleges = () => {
-  const clgData = useContext(ClgContext);
+  const [clgData] = useDataLoader();
   const [selectedCollege, setSelectedCollege] = useState(null);
 
   const scrollToDiv = (to) => {

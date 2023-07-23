@@ -7,11 +7,11 @@ import Galeries from "./homeLayouts/Galeries";
 import RegisterInfo from "./homeLayouts/RegisterInfo";
 import Research from "./homeLayouts/Research";
 import Review from "./homeLayouts/Review";
-import { useContext, useEffect, useState } from "react";
-import { ClgContext } from "../../../App";
+import { useEffect, useState } from "react";
+import useDataLoader from "../../../hooks/useDataLoader";
 
 const Home = () => {
-  const clgData = useContext(ClgContext);
+  const [clgData] = useDataLoader();
   const [colleges, setColleges] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const filteredColleges = clgData.filter((clg) =>

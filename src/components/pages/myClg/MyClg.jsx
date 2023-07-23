@@ -4,8 +4,10 @@ import api from "../../utilities/axiosAccess";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import useDataLoader from "../../../hooks/useDataLoader";
 
 const MyClg = () => {
+  const [, refetch] = useDataLoader();
   const { user } = useContext(AuthContext);
   const [myClg, setMyClg] = useState([]);
   const [clsID, setClsID] = useState(null);
@@ -21,7 +23,7 @@ const MyClg = () => {
     api.get(`getCandidateClg?user=${user.email}`).then((res) => {
       setMyClg(res.data);
     });
-  }, [user.email]);
+  }, [user.email, clsID]);
 
   const handleFeedbackClick = (id) => {
     setClsID(id);
@@ -43,6 +45,7 @@ const MyClg = () => {
     });
 
     reset();
+    refetch();
     setClsID(null);
     document.getElementById("my_modal_5").close();
   };
@@ -62,6 +65,9 @@ const MyClg = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{clg.college_name}</h2>
+              <div className="badge badge-secondary badge-outline mb-4">
+                Rating: {clg.rating}
+              </div>
               <p>{clg.research_history}</p>
               <div className="card-actions justify-start mt-5">
                 <button

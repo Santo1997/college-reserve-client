@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import SectionTitle from "../../utilities/SectionTitle";
-import { ClgContext } from "../../../App";
 import { useForm } from "react-hook-form";
 import api from "../../utilities/axiosAccess";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import useDataLoader from "../../../hooks/useDataLoader";
 
 const Admission = () => {
-  const clgData = useContext(ClgContext);
+  const [clgData] = useDataLoader();
   const navigate = useNavigate();
   const from = "/my_college";
 
