@@ -1,5 +1,6 @@
 const ClgCard = ({ clg }) => {
   const {
+    _id,
     college_name,
     college_image,
     admission_dates,
@@ -7,7 +8,7 @@ const ClgCard = ({ clg }) => {
     rating,
   } = clg;
   return (
-    <div className="card lg:card-side shadow-xl mb-3">
+    <div id={_id} className="card lg:card-side shadow-xl mb-3">
       <figure>
         <img
           src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg"
