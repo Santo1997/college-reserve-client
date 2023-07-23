@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     // errorElement: <Error />,
-    loader: () => fetch(`http://localhost:5000/allClg`),
+    loader: () => fetch(`http://localhost:5000/getAllClg`),
     children: [
       {
         path: "/",

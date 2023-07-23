@@ -4,6 +4,7 @@ import { ClgContext } from "../../../App";
 import { useForm } from "react-hook-form";
 import api from "../../utilities/axiosAccess";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Admission = () => {
   const clgData = useContext(ClgContext);
@@ -29,10 +30,14 @@ const Admission = () => {
       img: data.img,
     };
 
-    api.post("/candidates", newCandidate).then((res) => {
+    api.post("/postCandidates", newCandidate).then((res) => {
       if (res.data.insertedId) {
         reset();
         navigate(from, { replace: true });
+      } else {
+        if (res.data === "existCandite") {
+          toast.error("Candidate Alreday Exist");
+        }
       }
     });
   };
