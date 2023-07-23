@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import SectionTitle from "../../loader/SectionTitle";
+import SectionTitle from "../../utilities/SectionTitle";
 import { ClgContext } from "../../../App";
 import { useForm } from "react-hook-form";
 

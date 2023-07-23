@@ -9,7 +9,6 @@ export const ClgContext = createContext();
 
 function App() {
   const clgData = useLoaderData();
-  console.log(clgData);
   return (
     <>
       <ClgContext.Provider value={clgData}>

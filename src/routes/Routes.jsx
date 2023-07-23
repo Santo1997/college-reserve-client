@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     // errorElement: <Error />,
-    loader: () => fetch(`./local.json`),
+    loader: () => fetch(`http://localhost:5000/allClg`),
     children: [
       {
         path: "/",

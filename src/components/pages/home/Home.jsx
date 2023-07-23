@@ -1,7 +1,7 @@
-import SearchBar from "../../loader/SearchBar";
+import SearchBar from "../../utilities/SearchBar";
 import Intro from "./homeLayouts/Intro";
 import CollegesCard from "./homeLayouts/CollegesCard";
-import AddButton from "../../loader/AddButton";
+import AddButton from "../../utilities/AddButton";
 import AddClgInfo from "./homeLayouts/AddClgInfo";
 import Galeries from "./homeLayouts/Galeries";
 import RegisterInfo from "./homeLayouts/RegisterInfo";
@@ -13,6 +13,10 @@ import { ClgContext } from "../../../App";
 const Home = () => {
   const clgData = useContext(ClgContext);
   const [colleges, setColleges] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredColleges = clgData.filter((clg) =>
+    clg.college_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     const sortedColleges = clgData.sort((a, b) => b.rating - a.rating);
@@ -23,7 +27,7 @@ const Home = () => {
 
   return (
     <>
-      <SearchBar /> {/*  onSearch={handleSearch} */}
+      <SearchBar onChange={setSearchTerm} filteredColleges={filteredColleges} />
       <Intro />
       <CollegesCard popularClg={popularClg} />
       <AddButton button="View More" />

@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { Navigation } from "swiper/modules";
-import SectionTitle from "../../../loader/SectionTitle";
+import SectionTitle from "../../../utilities/SectionTitle";
 
 const Review = () => {
   return (

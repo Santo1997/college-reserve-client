@@ -1,4 +1,4 @@
-import SectionTitle from "../../../loader/SectionTitle";
+import SectionTitle from "../../../utilities/SectionTitle";
 
 const CollegesCard = ({ popularClg }) => {
   return (

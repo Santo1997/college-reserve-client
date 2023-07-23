@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import SectionTitle from "../../loader/SectionTitle";
+import SectionTitle from "../../utilities/SectionTitle";
 import ClgCard from "./ClgCard";
 import { BiMenuAltRight } from "react-icons/bi";
 import { ClgContext } from "../../../App";
