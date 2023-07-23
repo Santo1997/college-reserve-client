@@ -32,8 +32,10 @@ const Login = () => {
   };
 
   const googleHandle = () => {
-    handleGoogleSignIn(googleProvider);
-    navigate(from, { replace: true });
+    handleGoogleSignIn(googleProvider).then((result) => {
+      GoogleAuthProvider.credentialFromResult(result);
+      navigate(from, { replace: true });
+    });
   };
 
   return (

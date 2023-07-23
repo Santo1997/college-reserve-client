@@ -1,8 +1,8 @@
-const ClgCard = ({ clg }) => {
+const ClgCard = ({ clg, modalClick }) => {
   const {
     _id,
     college_name,
-    college_image,
+
     admission_dates,
 
     rating,
@@ -16,7 +16,7 @@ const ClgCard = ({ clg }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-2xl">{college_name}</h2>
+        <h2 className="card-title text-2xl text-info">{college_name}</h2>
         <div className="badge badge-secondary badge-outline mb-4">
           Rating: {rating}
         </div>
@@ -25,7 +25,12 @@ const ClgCard = ({ clg }) => {
           <li>Number of the Research: {}</li>
         </ul>
         <div className="card-actions justify-end">
-          <button className="btn btn-info">Details</button>
+          <button
+            onClick={() => modalClick(_id)}
+            className="btn btn-info text-white"
+          >
+            Details
+          </button>
         </div>
       </div>
     </div>

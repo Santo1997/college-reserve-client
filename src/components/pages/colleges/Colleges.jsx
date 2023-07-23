@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SectionTitle from "../../utilities/SectionTitle";
 import ClgCard from "./ClgCard";
 import { BiMenuAltRight } from "react-icons/bi";
 import useDataLoader from "../../../hooks/useDataLoader";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Colleges = () => {
   const [clgData] = useDataLoader();
+  const { user } = useContext(AuthContext);
+  const [clsID, setClsID] = useState(null);
+  const navigate = useNavigate();
+  const loaction = useLocation();
   const [selectedCollege, setSelectedCollege] = useState(null);
 
   const scrollToDiv = (to) => {
@@ -15,6 +21,18 @@ const Colleges = () => {
     }
 
     setSelectedCollege(to);
+  };
+
+  const modalClick = (id) => {
+    if (!user) {
+      return navigate("/signin", {
+        state: { from: loaction },
+        replace: true,
+      });
+    }
+
+    setClsID(id);
+    window.my_modal_5.showModal();
   };
 
   return (
@@ -50,7 +68,7 @@ const Colleges = () => {
                     : "none",
               }}
             >
-              <ClgCard clg={clg} />
+              <ClgCard clg={clg} modalClick={modalClick} />
             </div>
           ))}
         </div>
@@ -73,6 +91,65 @@ const Colleges = () => {
           </ul>
         </div>
       </div>
+
+      <dialog id="my_modal_5" className="modal">
+        <div method="dialog" className="modal-box">
+          <button
+            htmlFor="my-modal-5"
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={() => {
+              document.getElementById("my_modal_5").close();
+            }}
+          >
+            ✕
+          </button>
+          <div className="card-body">
+            {/* Display the data of the selected college inside the modal */}
+            {clgData.map((clg) => {
+              if (clg._id === clsID) {
+                return (
+                  <div key={clg._id}>
+                    <h1 className="card-title text-2xl mb-3 text-info">
+                      {clg.college_name}
+                    </h1>
+                    <ul>
+                      <li>
+                        <span className="font-bold">Admission: </span>
+                        <ul className="ps-3 list-disc list-inside">
+                          {clg.admission_dates.map((dates, index) => (
+                            <li key={index}>{dates}</li>
+                          ))}
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">Events: </span>
+                        <ul className="ps-3 list-disc list-inside">
+                          {clg.events.map((event, index) => (
+                            <li key={index}>{event}</li>
+                          ))}
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">Sports: </span>
+                        <ul className="ps-3 list-disc list-inside">
+                          {clg.sports.map((sport, index) => (
+                            <li key={index}>{sport}</li>
+                          ))}
+                        </ul>
+                      </li>
+                      <li>
+                        <span className="font-bold">Research Work: </span>
+                        {clg.research_history}
+                      </li>
+                    </ul>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

@@ -11,11 +11,6 @@ const ClgData = ({ clg }) => {
             <li>
               <span className="font-bold">Admission: </span>
               {clg.admission_dates[0]}
-              {/* <ul className="ps-3 list-disc list-inside">
-                    {clg.admission_dates.map((dates, index) => (
-                      <li key={index}>{dates}</li>
-                    ))}
-                  </ul> */}
             </li>
             <li>
               <span className="font-bold">Events: </span>
