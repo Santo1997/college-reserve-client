@@ -19,7 +19,7 @@ const Research = ({ infoData }) => {
             <div className="card-body p-3">
               <h2 className="card-title">{clg.college_name}</h2>
               <p>
-                <span>{clg.research_history.substring(0, 80) + "....."}</span>
+                <span>{clg.research_history?.substring(0, 80) + "....."}</span>
                 <br />
                 <span>
                   <a href="">{clg.research}</a>

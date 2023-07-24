@@ -1,12 +1,5 @@
 const ClgCard = ({ clg, modalClick }) => {
-  const {
-    _id,
-    college_name,
-
-    admission_dates,
-
-    rating,
-  } = clg;
+  const { _id, college_name, admission_dates, rating, research_num } = clg;
   return (
     <div id={_id} className="card lg:card-side shadow-xl mb-3">
       <figure>
@@ -21,8 +14,8 @@ const ClgCard = ({ clg, modalClick }) => {
           Rating: {rating}
         </div>
         <ul>
-          <li>Admission Date: {admission_dates[0]}</li>
-          <li>Number of the Research: {}</li>
+          <li>Admission Date: {admission_dates?.[0]}</li>
+          <li>Number of the Research: {research_num}</li>
         </ul>
         <div className="card-actions justify-end">
           <button

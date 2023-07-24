@@ -11,6 +11,7 @@ const MyClg = () => {
   const { user } = useContext(AuthContext);
   const [myClg, setMyClg] = useState([]);
   const [clsID, setClsID] = useState(null);
+  const [loader, setLoader] = useState(true);
 
   const {
     register,
@@ -22,6 +23,7 @@ const MyClg = () => {
   useEffect(() => {
     api.get(`getCandidateClg?user=${user.email}`).then((res) => {
       setMyClg(res.data);
+      setLoader(false);
     });
   }, [user.email, clsID]);
 
@@ -54,33 +56,37 @@ const MyClg = () => {
     <div>
       <SectionTitle heading="My Colleges"></SectionTitle>
 
-      <div className="md:grid md:grid-cols-4 gap-3 relative">
-        {myClg.map((clg) => (
-          <div
-            className="card card-compact  bg-base-100 shadow-xl"
-            key={clg._id}
-          >
-            <figure>
-              <img src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{clg.college_name}</h2>
-              <div className="badge badge-secondary badge-outline mb-4">
-                Rating: {clg.rating}
-              </div>
-              <p>{clg.research_history}</p>
-              <div className="card-actions justify-start mt-5">
-                <button
-                  onClick={() => handleFeedbackClick(clg._id)}
-                  className="btn btn-info text-white"
-                >
-                  Add a Review
-                </button>
+      {loader ? (
+        <progress className="progress w-56"></progress>
+      ) : (
+        <div className="md:grid md:grid-cols-4 gap-3 relative">
+          {myClg.map((clg) => (
+            <div
+              className="card card-compact  bg-base-100 shadow-xl"
+              key={clg._id}
+            >
+              <figure>
+                <img src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg" />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title">{clg.college_name}</h2>
+                <div className="badge badge-secondary badge-outline mb-4">
+                  Rating: {clg.rating}
+                </div>
+                <p>{clg.research_history}</p>
+                <div className="card-actions justify-start mt-5">
+                  <button
+                    onClick={() => handleFeedbackClick(clg._id)}
+                    className="btn btn-info text-white"
+                  >
+                    Add a Review
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <dialog id="my_modal_5" className="modal">
         <div method="dialog" className="modal-box">
           <button

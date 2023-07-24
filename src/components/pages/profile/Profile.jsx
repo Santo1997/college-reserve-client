@@ -37,7 +37,7 @@ const Profile = () => {
                 </p>
               </div>
               <p className="font-bold underline">About</p>
-              <p>{data.about.substring(0, 350)}</p>
+              <p>{data.about?.substring(0, 350)}</p>
               <div className="card-actions justify-center mt-5">
                 <Link to={`/edit_profile`}>
                   <button className="btn btn-info text-white">

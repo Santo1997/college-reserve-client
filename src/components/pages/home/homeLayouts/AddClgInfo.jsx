@@ -1,6 +1,6 @@
 const AddClgInfo = () => {
   return (
-    <div className="card w-full bg-slate-800 text-white">
+    <div className="card w-full bg-slate-800 text-white mt-14">
       <div className="card-body text-center">
         <h2 className="card-title mx-auto text-base">We Are Best</h2>
         <h2 className="card-title mx-auto text-2xl text-info">

@@ -1,6 +1,6 @@
 const RegisterInfo = () => {
   return (
-    <div className="card my-10 w-full bg-slate-800 text-white">
+    <div className="card my-14 w-full bg-slate-800 text-white">
       <div className="card-body text-center">
         <h2 className="card-title mx-auto text-base">We Are Best</h2>
         <h2 className="card-title mx-auto text-2xl text-info">

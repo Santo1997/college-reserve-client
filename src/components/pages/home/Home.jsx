@@ -1,7 +1,6 @@
 import SearchBar from "../../utilities/SearchBar";
 import Intro from "./homeLayouts/Intro";
 import CollegesCard from "./homeLayouts/CollegesCard";
-import AddButton from "../../utilities/AddButton";
 import AddClgInfo from "./homeLayouts/AddClgInfo";
 import Galeries from "./homeLayouts/Galeries";
 import RegisterInfo from "./homeLayouts/RegisterInfo";
@@ -14,8 +13,10 @@ const Home = () => {
   const [infoData] = useDataLoader("getAllClg");
   const [colleges, setColleges] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredColleges = infoData.filter((clg) =>
-    clg.college_name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredColleges = infoData.filter(
+    (clg) =>
+      clg.college_name &&
+      clg.college_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -30,7 +31,6 @@ const Home = () => {
       <SearchBar onChange={setSearchTerm} filteredColleges={filteredColleges} />
       <Intro />
       <CollegesCard popularClg={popularClg} />
-      <AddButton button="View More" />
       <AddClgInfo />
       <Galeries infoData={infoData} />
       <RegisterInfo />

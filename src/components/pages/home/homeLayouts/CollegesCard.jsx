@@ -18,24 +18,19 @@ const CollegesCard = ({ popularClg }) => {
               <ul>
                 <li>
                   <span className="font-bold">Admission: </span>
-                  {clg.admission_dates[0]}
-                  {/* <ul className="ps-3 list-disc list-inside">
-                    {clg.admission_dates.map((dates, index) => (
-                      <li key={index}>{dates}</li>
-                    ))}
-                  </ul> */}
+                  {clg.admission_dates?.[0]}
                 </li>
                 <li>
                   <span className="font-bold">Events: </span>
-                  {clg.events[0]}
+                  {clg.events?.[0]}
                 </li>
                 <li>
                   <span className="font-bold">Sports: </span>
-                  {clg.sports[0]}
+                  {clg.sports?.[0]}
                 </li>
                 <li>
                   <span className="font-bold">Research Work: </span>
-                  {clg.research_history.substring(0, 135) + "....."}
+                  {clg.research_history?.substring(0, 135) + "....."}
                 </li>
               </ul>
               <div className="card-actions justify-center mt-2">
