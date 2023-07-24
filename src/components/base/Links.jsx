@@ -36,7 +36,10 @@ const Links = () => {
             <Activelink to="/my_college">My College</Activelink>
           </li>
           <li className="text-lg">
-            <button className="btn-md" onClick={handleLogOut}>
+            <button
+              className="btn-md btn-outline text-white hover:text-info"
+              onClick={handleLogOut}
+            >
               LogOut
             </button>
           </li>
@@ -44,6 +47,7 @@ const Links = () => {
             <Activelink to="/profile">
               {user.displayName !== null && (
                 <>
+                  <span>{user.displayName}</span>
                   <div className="avatar">
                     <div className="w-8 rounded-full">
                       <img src={user.photoURL} />

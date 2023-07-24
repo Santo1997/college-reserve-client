@@ -33,7 +33,7 @@ const CollegesCard = ({ popularClg }) => {
         {popularClg.map((clg) => (
           <div className="card card-compact shadow-xl" key={clg._id}>
             <figure>
-              <img src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg" />
+              <img src={clg.college_image} />
             </figure>
             <div className="card-body">
               <h2 className="card-title text-info">{clg.college_name}</h2>

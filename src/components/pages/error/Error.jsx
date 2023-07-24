@@ -1,6 +1,7 @@
 import anime from "animejs";
 import "./Error.css";
 import { Link } from "react-router-dom";
+import Title from "../../utilities/Title";
 
 const Error = () => {
   anime({
@@ -25,6 +26,7 @@ const Error = () => {
 
   return (
     <>
+      <Title title="Error" />
       <Link to="/">
         <div className="contain">
           <div className="container">

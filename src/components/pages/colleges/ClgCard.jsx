@@ -1,12 +1,16 @@
 const ClgCard = ({ clg, modalClick }) => {
-  const { _id, college_name, admission_dates, rating, research_num } = clg;
+  const {
+    _id,
+    college_name,
+    college_image,
+    admission_dates,
+    rating,
+    research_num,
+  } = clg;
   return (
     <div id={_id} className="card lg:card-side shadow-xl mb-3">
       <figure>
-        <img
-          src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg"
-          className="w-96"
-        />
+        <img src={college_image} className="w-96" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-2xl text-info">{college_name}</h2>

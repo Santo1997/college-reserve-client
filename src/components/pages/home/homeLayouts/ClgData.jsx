@@ -5,7 +5,7 @@ const ClgData = ({ clg }) => {
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden absolute right-0 z-50">
       <div className="card card-compact shadow-xl bg-white">
         <figure>
-          <img src="https://i.ibb.co/KWf42H4/1665540475120-2.jpg" />
+          <img src={clg.college_image} />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-info">{clg.college_name}</h2>

@@ -1,10 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Links from "./Links";
 
 const Header = () => {
+  const location = useLocation();
   return (
     <>
-      <div className="navbar bg-slate-800 text-white font-bold fixed top-0 right-0 z-50">
+      <div
+        className={
+          location.pathname === "/profile"
+            ? "navbar bg-[#5e72e4] text-white font-bold fixed top-0 right-0 z-50"
+            : "navbar bg-slate-800 text-white font-bold fixed top-0 right-0 z-50"
+        }
+      >
         <div className="navbar-start">
           <div className="avatar">
             <div className="w-12 lg:w-14 ms-3 rounded-full ring ring-info ">
