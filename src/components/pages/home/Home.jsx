@@ -11,17 +11,17 @@ import { useEffect, useState } from "react";
 import useDataLoader from "../../../hooks/useDataLoader";
 
 const Home = () => {
-  const [clgData] = useDataLoader();
+  const [infoData] = useDataLoader("getAllClg");
   const [colleges, setColleges] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const filteredColleges = clgData.filter((clg) =>
+  const filteredColleges = infoData.filter((clg) =>
     clg.college_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
-    const sortedColleges = clgData.sort((a, b) => b.rating - a.rating);
+    const sortedColleges = infoData.sort((a, b) => b.rating - a.rating);
     setColleges(sortedColleges);
-  }, [clgData]);
+  }, [infoData]);
 
   const popularClg = colleges.slice(0, 3);
 
@@ -32,9 +32,9 @@ const Home = () => {
       <CollegesCard popularClg={popularClg} />
       <AddButton button="View More" />
       <AddClgInfo />
-      <Galeries clgData={clgData} />
+      <Galeries infoData={infoData} />
       <RegisterInfo />
-      <Research clgData={clgData} />
+      <Research infoData={infoData} />
       <Review />
     </>
   );

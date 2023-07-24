@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import useDataLoader from "../../../hooks/useDataLoader";
 
 const MyClg = () => {
-  const [, refetch] = useDataLoader();
+  const [, refetch] = useDataLoader("getAllClg");
   const { user } = useContext(AuthContext);
   const [myClg, setMyClg] = useState([]);
   const [clsID, setClsID] = useState(null);

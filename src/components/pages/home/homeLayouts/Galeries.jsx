@@ -1,6 +1,6 @@
 import SectionTitle from "../../../utilities/SectionTitle";
 
-const Galeries = ({ clgData }) => {
+const Galeries = ({ infoData }) => {
   return (
     <div>
       <SectionTitle
@@ -9,7 +9,7 @@ const Galeries = ({ clgData }) => {
       ></SectionTitle>
 
       <div className="grid md:grid-cols-3 gap-2">
-        {clgData.map((clg) => (
+        {infoData.map((clg) => (
           <div className="card card-compact shadow-xl" key={clg._id}>
             <figure>
               <img src={clg.graduate} />

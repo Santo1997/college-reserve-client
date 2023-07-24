@@ -1,18 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../components/utilities/axiosAccess";
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
-const useDataLoader = () => {
-  const user = "hossain";
+const useDataLoader = (path) => {
+  const { user } = useContext(AuthContext);
 
-  const { refetch, data: clgData = [] } = useQuery({
-    queryKey: ["cart", user],
+  const { refetch, data: infoData = [] } = useQuery({
+    queryKey: ["cart", user?.email],
     queryFn: async () => {
-      const res = await api.get(`/getAllClg?user=${user}`);
+      const res = await api.get(`/${path}?user=${user?.email}`);
       return res.data;
     },
   });
 
-  return [clgData, refetch];
+  return [infoData, refetch];
 };
 
 export default useDataLoader;

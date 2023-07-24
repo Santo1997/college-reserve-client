@@ -1,6 +1,6 @@
 import SectionTitle from "../../../utilities/SectionTitle";
 
-const Research = ({ clgData }) => {
+const Research = ({ infoData }) => {
   return (
     <div>
       <SectionTitle
@@ -8,7 +8,7 @@ const Research = ({ clgData }) => {
         subHeading="Every research paper displayed in our showcase goes through a rigorous evaluation process to ensure academic excellence. These papers demonstrate students' commitment to producing scholarly work of the highest quality."
       ></SectionTitle>
       <div className="grid md:grid-cols-2 gap-2">
-        {clgData.map((clg) => (
+        {infoData.map((clg) => (
           <div className="card md:card-side shadow-xl md:h-40" key={clg._id}>
             <figure>
               <img

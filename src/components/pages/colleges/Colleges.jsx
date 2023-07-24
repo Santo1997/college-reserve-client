@@ -7,7 +7,7 @@ import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Colleges = () => {
-  const [clgData] = useDataLoader();
+  const [infoData] = useDataLoader("getAllClg");
   const { user } = useContext(AuthContext);
   const [clsID, setClsID] = useState(null);
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const Colleges = () => {
               <BiMenuAltRight className="text-3xl text-info" />
             </summary>
             <ul className="dropdown-content text-left p-4 shadow menu border-2 border-info z-[1] bg-base-100 rounded-lg w-48 mt-2">
-              {clgData.map((clg) => (
+              {infoData.map((clg) => (
                 <li className="hover:text-info mb-2" key={clg._id}>
                   <button className="btn" onClick={() => scrollToDiv(clg._id)}>
                     {clg.college_name}
@@ -58,7 +58,7 @@ const Colleges = () => {
       </div>
       <div className="md:grid md:grid-cols-3 gap-3 relative">
         <div className="col-span-2">
-          {clgData.map((clg) => (
+          {infoData.map((clg) => (
             <div
               key={clg._id}
               style={{
@@ -81,7 +81,7 @@ const Colleges = () => {
             <li className="hover:text-info mb-2">
               <button onClick={() => scrollToDiv(null)}>All College</button>
             </li>
-            {clgData.map((clg) => (
+            {infoData.map((clg) => (
               <li className="hover:text-info mb-2" key={clg._id}>
                 <button onClick={() => scrollToDiv(clg._id)}>
                   {clg.college_name}
@@ -104,8 +104,7 @@ const Colleges = () => {
             ✕
           </button>
           <div className="card-body">
-            {/* Display the data of the selected college inside the modal */}
-            {clgData.map((clg) => {
+            {infoData.map((clg) => {
               if (clg._id === clsID) {
                 return (
                   <div key={clg._id}>

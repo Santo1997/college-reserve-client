@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import useDataLoader from "../../../hooks/useDataLoader";
 
 const Admission = () => {
-  const [clgData] = useDataLoader();
+  const [infoData] = useDataLoader("getAllClg");
   const navigate = useNavigate();
   const from = "/my_college";
 
@@ -27,6 +27,7 @@ const Admission = () => {
       address: data.address,
       birth: data.birth,
       img: data.img,
+      about: "Let's write somthing about you (350 words)",
     };
 
     api.post("/postCandidates", newCandidate).then((res) => {
@@ -61,8 +62,8 @@ const Admission = () => {
                   {...register("clg", { required: true })}
                   className="select select-info w-full col-span-3"
                 >
-                  <option value="dfgh">Select language</option>
-                  {clgData.map((clg) => (
+                  <option value="dfgh">Select College</option>
+                  {infoData.map((clg) => (
                     <option
                       value={clg.college_name}
                       className="hover:text-info mb-2"
@@ -115,7 +116,7 @@ const Admission = () => {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   className="input input-bordered col-span-3 setInput"
                   {...register("email", { required: true })}
@@ -163,7 +164,7 @@ const Admission = () => {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   placeholder="Date of birth"
                   className="input input-bordered col-span-3 setInput"
                   {...register("birth", { required: true })}

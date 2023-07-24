@@ -53,6 +53,7 @@ const router = createBrowserRouter([
             <EditProfile />
           </PrivateRoutes>
         ),
+        loader: () => fetch(`http://localhost:5000/getAllClg`),
       },
       {
         path: "/signin",
