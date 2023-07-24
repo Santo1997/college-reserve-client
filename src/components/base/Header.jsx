@@ -8,7 +8,7 @@ const Header = () => {
         <div className="navbar-start">
           <div className="avatar">
             <div className="w-12 lg:w-14 ms-3 rounded-full ring ring-info ">
-              <img src=" " />
+              <img src="./logo.jpeg" />
             </div>
           </div>
           <h1 className="btn btn-ghost normal-case text-3xl">

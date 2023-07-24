@@ -42,7 +42,7 @@ const Links = () => {
           </li>
           <li className="text-lg">
             <Activelink to="/profile">
-              {user.displayName !== null ? (
+              {user.displayName !== null && (
                 <>
                   <div className="avatar">
                     <div className="w-8 rounded-full">
@@ -50,12 +50,6 @@ const Links = () => {
                     </div>
                   </div>
                 </>
-              ) : (
-                <div className="avatar">
-                  <div className="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                    <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                  </div>
-                </div>
               )}
             </Activelink>
           </li>

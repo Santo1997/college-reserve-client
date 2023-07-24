@@ -26,7 +26,7 @@ const Research = ({ infoData }) => {
                 </span>
               </p>
               <div className="card-actions justify-end relative">
-                <button className="btn btn-info btn-sm absolute bottom-0">
+                <button className="btn btn-info btn-sm text-white absolute bottom-0">
                   Watch
                 </button>
               </div>

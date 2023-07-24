@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="items-center grid-flow-col">
           <div className="avatar me-2">
             <div className="w-20 rounded">
-              <img src="https://i.ibb.co/nn647jt/logo.jpg" />
+              <img src="./logo.jpeg" />
             </div>
           </div>
           <p>

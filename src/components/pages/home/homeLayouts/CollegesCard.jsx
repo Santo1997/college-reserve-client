@@ -1,6 +1,28 @@
+import { useContext, useState } from "react";
 import SectionTitle from "../../../utilities/SectionTitle";
+import { AuthContext } from "../../../../provider/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import useDataLoader from "../../../../hooks/useDataLoader";
+import ModalData from "../../../utilities/ModalData";
 
 const CollegesCard = ({ popularClg }) => {
+  const [infoData] = useDataLoader("getAllClg");
+  const { user } = useContext(AuthContext);
+  const [clgID, setClgID] = useState(null);
+  const navigate = useNavigate();
+  const loaction = useLocation();
+
+  const modalClick = (id) => {
+    if (!user) {
+      return navigate("/signin", {
+        state: { from: loaction },
+        replace: true,
+      });
+    }
+    setClgID(id);
+    window.my_modal_5.showModal();
+  };
+
   return (
     <div>
       <SectionTitle
@@ -34,7 +56,10 @@ const CollegesCard = ({ popularClg }) => {
                 </li>
               </ul>
               <div className="card-actions justify-center mt-2">
-                <button className="btn btn-info text-white">
+                <button
+                  onClick={() => modalClick(clg._id)}
+                  className="btn btn-info text-white"
+                >
                   View Details
                 </button>
               </div>
@@ -42,6 +67,27 @@ const CollegesCard = ({ popularClg }) => {
           </div>
         ))}
       </div>
+      <dialog id="my_modal_5" className="modal">
+        <div method="dialog" className="modal-box">
+          <button
+            htmlFor="my-modal-5"
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            onClick={() => {
+              document.getElementById("my_modal_5").close();
+            }}
+          >
+            ✕
+          </button>
+          <div className="card-body">
+            {infoData.map((clg) => {
+              if (clg._id === clgID) {
+                return <ModalData clg={clg} key={clg._id} />;
+              }
+              return null;
+            })}
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const RegisterInfo = () => {
   return (
     <div className="card my-14 w-full bg-slate-800 text-white">
@@ -12,7 +14,9 @@ const RegisterInfo = () => {
           visit or use college services with confidence
         </p>
         <div className="card-actions justify-center">
-          <button className="btn btn-info">Register Now</button>
+          <Link to="/signup">
+            <button className="btn btn-info text-white">Register Now</button>
+          </Link>
         </div>
       </div>
     </div>

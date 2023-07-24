@@ -11,9 +11,6 @@ const AddClgInfo = () => {
           students and counting. Join our community and experience the
           transformative power of education with a trusted partner.
         </p>
-        <div className="card-actions justify-center">
-          <button className="btn btn-info">Buy Now</button>
-        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const MyClg = () => {
   const [, refetch] = useDataLoader("getAllClg");
   const { user } = useContext(AuthContext);
   const [myClg, setMyClg] = useState([]);
-  const [clsID, setClsID] = useState(null);
+  const [clgName, setClgName] = useState(null);
   const [loader, setLoader] = useState(true);
 
   const {
@@ -25,30 +25,37 @@ const MyClg = () => {
       setMyClg(res.data);
       setLoader(false);
     });
-  }, [user.email, clsID]);
+  }, [user.email, clgName]);
 
-  const handleFeedbackClick = (id) => {
-    setClsID(id);
+  const handleFeedbackClick = (clg) => {
+    setClgName(clg);
     window.my_modal_5.showModal();
   };
 
   const onSubmit = (data) => {
     const setFeedback = {
-      clsID,
+      clgName,
+      user: user.displayName,
+      img: user.photoURL,
+      email: user.email,
       rating: data.rating,
       feedback: data.feedback,
     };
-    console.log(setFeedback);
 
-    api.put(`/updateClgFed/${clsID}`, setFeedback).then((response) => {
-      if (response.data.modifiedCount > 0) {
+    api.post("/postReview", setFeedback).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
         toast.success("Thanks For Your FeedBack");
+      } else {
+        if (res.data === "existCandite") {
+          toast.error("FeedBack Alreday Exist");
+        }
       }
     });
 
     reset();
     refetch();
-    setClsID(null);
+    setClgName(null);
     document.getElementById("my_modal_5").close();
   };
 
@@ -76,7 +83,7 @@ const MyClg = () => {
                 <p>{clg.research_history}</p>
                 <div className="card-actions justify-start mt-5">
                   <button
-                    onClick={() => handleFeedbackClick(clg._id)}
+                    onClick={() => handleFeedbackClick(clg.college_name)}
                     className="btn btn-info text-white"
                   >
                     Add a Review

@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
-import useDataLoader from "../../../hooks/useDataLoader";
+import { useContext, useEffect, useState } from "react";
+import api from "../../utilities/axiosAccess";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Profile = () => {
-  const [infoData] = useDataLoader("getCandidate");
+  const { user } = useContext(AuthContext);
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    api.get(`getCandidate?user=${user.email}`).then((res) => {
+      setProfile(res.data);
+    });
+  }, [user.email]);
+
   return (
     <div className="container my-4 bg-base-100 h-screen">
       <div className="bg-[#5e72e4] flex justify-center min-h-[calc(100vh-40vh)] relative">
-        {infoData.map((data) => (
+        {profile.map((data) => (
           <div
             className=" card card-compact max-w-sm md:max-w-xl bg-base-100 shadow-xl absolute top-[40%] p-5"
             key={data._id}
