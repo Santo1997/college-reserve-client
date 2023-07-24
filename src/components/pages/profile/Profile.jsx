@@ -18,7 +18,7 @@ const Profile = () => {
       <div className="bg-[#5e72e4] flex justify-center min-h-[calc(100vh-55vh)] relative">
         {profile.map((data) => (
           <div
-            className=" card card-compact max-w-sm md:max-w-xl bg-base-100 shadow-xl absolute top-[60%] p-5"
+            className=" card card-compact max-w-lg bg-base-100 shadow-xl absolute top-[60%] p-5"
             key={data._id}
           >
             <div className="avatar mx-auto relative">

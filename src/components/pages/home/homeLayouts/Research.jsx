@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SectionTitle from "../../../utilities/SectionTitle";
 
 const Research = ({ infoData }) => {
@@ -10,7 +11,7 @@ const Research = ({ infoData }) => {
       ></SectionTitle>
       <div className="grid md:grid-cols-2 gap-2">
         {showCase.map((clg) => (
-          <div className="card md:card-side shadow-xl md:h-40" key={clg._id}>
+          <div className="card md:card-side shadow-xl h-fit" key={clg._id}>
             <figure>
               <img src={clg.college_image} className="md:h-full md:w-56 " />
             </figure>
@@ -19,14 +20,14 @@ const Research = ({ infoData }) => {
               <p>
                 <span>{clg.research_history?.substring(0, 80) + "....."}</span>
                 <br />
-                <span>
-                  <a href="">{clg.research}</a>
-                </span>
+                <span>{clg.research}</span>
               </p>
-              <div className="card-actions justify-end relative">
-                <button className="btn btn-info btn-sm text-white absolute bottom-0">
-                  Watch
-                </button>
+              <div className="card-actions justify-end me-5">
+                <Link to={clg.research}>
+                  <button className="btn btn-info btn-sm text-white">
+                    Watch
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

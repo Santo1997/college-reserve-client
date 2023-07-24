@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             <EditProfile />
           </PrivateRoutes>
         ),
-        loader: () => fetch(`http://localhost:5000/getAllClg`),
+        loader: () => fetch(`https://endgame-server-iota.vercel.app/getAllClg`),
       },
       {
         path: "/signin",

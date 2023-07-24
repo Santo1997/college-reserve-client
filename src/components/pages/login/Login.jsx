@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const Login = () => {
-  const { signIn, handleGoogleSignIn } = useContext(AuthContext);
+  const { signIn, handleGoogleSignIn, handleGithubSignIn } =
+    useContext(AuthContext);
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,6 +39,13 @@ const Login = () => {
   const googleHandle = () => {
     handleGoogleSignIn(googleProvider).then((result) => {
       GoogleAuthProvider.credentialFromResult(result);
+      navigate(from, { replace: true });
+    });
+  };
+
+  const githubHandle = () => {
+    handleGithubSignIn(githubProvider).then((result) => {
+      GithubAuthProvider.credentialFromResult(result);
       navigate(from, { replace: true });
     });
   };
@@ -107,9 +116,15 @@ const Login = () => {
           <div className=" text-center mb-10">
             <button
               onClick={googleHandle}
-              className="btn btn-outline btn-info btn-md "
+              className="btn btn-outline btn-info btn-md me-5"
             >
               Google
+            </button>
+            <button
+              onClick={githubHandle}
+              className="btn btn-outline btn-info btn-md"
+            >
+              Git-Hub
             </button>
           </div>
         </div>

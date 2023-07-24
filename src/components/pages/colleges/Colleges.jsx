@@ -40,15 +40,18 @@ const Colleges = () => {
     <div>
       <SectionTitle heading="Colleges"></SectionTitle>
       <div className="block md:hidden relative mb-28">
-        <div className="text-right w-full absolute z-50">
+        <div className="text-right w-full absolute z-10">
           <details className="dropdown dropdown-end mb-5 border-2 border-info">
             <summary className="btn">
               <BiMenuAltRight className="text-3xl text-info" />
             </summary>
             <ul className="dropdown-content text-left p-4 shadow menu border-2 border-info z-[1] bg-base-100 rounded-lg w-48 mt-2">
+              <li className="hover:text-info mb-2">
+                <button onClick={() => scrollToDiv(null)}>All College</button>
+              </li>
               {infoData.map((clg) => (
                 <li className="hover:text-info mb-2" key={clg._id}>
-                  <button className="btn" onClick={() => scrollToDiv(clg._id)}>
+                  <button onClick={() => scrollToDiv(clg._id)}>
                     {clg.college_name}
                   </button>
                 </li>
