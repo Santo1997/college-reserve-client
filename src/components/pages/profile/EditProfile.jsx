@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 
 const EditProfile = () => {
-  const [infoData, refetch] = useDataLoader("getCandidate");
+  const [infoData, refetch] = useDataLoader("getUser");
   const clgInfo = useLoaderData();
   const [loader, setLoader] = useState(true);
   const [editData, setEditData] = useState("");
@@ -26,13 +26,13 @@ const EditProfile = () => {
     formState: { errors },
   } = useForm();
 
-  const { _id, candidName, subject, email, phone, address, birth, img, about } =
+  const { _id, user, subject, email, phone, address, birth, img, about } =
     editData;
 
   const onSubmit = (data) => {
-    const updateCandidate = {
+    const updateUser = {
       clgName: data.clg,
-      candidName: data.candidName,
+      user: data.user,
       subject: data.subject,
       email: data.email,
       phone: data.phone,
@@ -42,7 +42,7 @@ const EditProfile = () => {
       about: data.about,
     };
 
-    api.put(`/updateCandidate/${_id}`, updateCandidate).then((res) => {
+    api.put(`/updateUser/${_id}`, updateUser).then((res) => {
       if (res.data.modifiedCount > 0) {
         reset();
         refetch();
@@ -72,7 +72,7 @@ const EditProfile = () => {
                   <label className="label">
                     <span className="label-text font-bold">
                       Select College
-                      {errors.candidName && (
+                      {errors.user && (
                         <span className="text-sm text-red-600">*</span>
                       )}
                     </span>
@@ -98,18 +98,18 @@ const EditProfile = () => {
                 <div className="form-control grid grid-cols-4">
                   <label className="label">
                     <span className="label-text font-bold">
-                      Candidate Name
-                      {errors.candidName && (
+                      User Name
+                      {errors.user && (
                         <span className="text-sm text-red-600">*</span>
                       )}
                     </span>
                   </label>
                   <input
                     type="text"
-                    defaultValue={candidName}
-                    placeholder="Candidate Name"
+                    defaultValue={user}
+                    placeholder="User Name"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("candidName")}
+                    {...register("user", { required: true })}
                   />
                 </div>
                 <div className="form-control grid grid-cols-4">
@@ -126,7 +126,7 @@ const EditProfile = () => {
                     defaultValue={subject}
                     placeholder="Subject"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("subject")}
+                    {...register("subject", { required: true })}
                   />
                 </div>
                 <div className="form-control grid grid-cols-4">
@@ -143,7 +143,7 @@ const EditProfile = () => {
                     defaultValue={email}
                     placeholder="Email"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("email")}
+                    {...register("email", { required: true })}
                   />
                 </div>
                 <div className="form-control grid grid-cols-4">
@@ -160,7 +160,7 @@ const EditProfile = () => {
                     defaultValue={phone}
                     placeholder="Phone number"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("phone")}
+                    {...register("phone", { required: true })}
                   />
                 </div>
                 <div className="form-control grid grid-cols-4">
@@ -177,7 +177,7 @@ const EditProfile = () => {
                     defaultValue={address}
                     placeholder="Address"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("address")}
+                    {...register("address", { required: true })}
                   />
                 </div>
                 <div className="form-control grid grid-cols-4">
@@ -211,7 +211,7 @@ const EditProfile = () => {
                     defaultValue={img}
                     placeholder="Image"
                     className="input input-bordered col-span-3 setInput"
-                    {...register("img")}
+                    {...register("img", { required: true })}
                   />
                 </div>
 

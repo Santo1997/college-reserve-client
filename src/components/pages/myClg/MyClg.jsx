@@ -27,6 +27,8 @@ const MyClg = () => {
     });
   }, [user.email, clgName]);
 
+  console.log(myClg);
+
   const handleFeedbackClick = (clg) => {
     setClgName(clg);
     window.my_modal_5.showModal();

@@ -10,7 +10,7 @@ const Intro = () => {
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content py-4 lg:py-0 text-center text-neutral-content">
         <div className="md:max-w-3xl">
-          <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
+          <h1 className="mb-5 text-5xl font-bold text-info">Welcome</h1>
           <p className="mb-5 ">
             College Reserve is a creative and unique name for a web application
             that offers college booking facilities. The play on words with
@@ -19,7 +19,6 @@ const Intro = () => {
             where users can reserve and organize diverse college facilities or
             spaces for various events and activities.
           </p>
-          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </div>

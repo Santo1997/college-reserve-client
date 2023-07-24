@@ -8,7 +8,7 @@ const Profile = () => {
   const [profile, setProfile] = useState([]);
 
   useEffect(() => {
-    api.get(`getCandidate?user=${user.email}`).then((res) => {
+    api.get(`getUser?user=${user.email}`).then((res) => {
       setProfile(res.data);
     });
   }, [user.email]);
@@ -27,7 +27,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="text-center mt-28">
-              <h2 className="text-3xl">{data.candidName}</h2>
+              <h2 className="text-3xl">{data.user}</h2>
               <h2 className="text-md mb-2">{data.address}</h2>
               <div className="mb-5">
                 <p>

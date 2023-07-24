@@ -63,7 +63,13 @@ const Review = () => {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold mb-2">{review.clgName}</h1>
-                  <h1 className="text-xl">{review.user}</h1>
+
+                  <h1 className="text-lg">
+                    {review.user}{" "}
+                    <div className="badge badge-secondary badge-outline ms-5">
+                      {review.rating}
+                    </div>
+                  </h1>
                 </div>
               </div>
               <p className="mt-5 text-base">{review.feedback}</p>

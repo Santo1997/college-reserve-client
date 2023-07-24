@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../provider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -10,19 +11,21 @@ const Login = () => {
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = location.state?.from?.pathname || "/";
-  const handleLogin = (event) => {
-    event.preventDefault();
-    setErr("");
-    const form = event.target;
-    const email = form.email.value;
-    const pass = form.pass.value;
 
-    signIn(email, pass)
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setErr("");
+    signIn(data.email, data.pwd)
       .then((userCredential) => {
         userCredential.user;
-        form.reset();
+        reset();
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -39,39 +42,43 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-[calc(100vh-300px)] ">
+    <div className="hero min-h-[calc(100vh-300px)] text-black">
       <div className="hero-content flex-col w-full lg:w-3/6">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold mb-10 text-info">Login now</h1>
+          <h1 className="text-5xl font-bold text-info">Login now</h1>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl">
-          <form onSubmit={handleLogin} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-info text-lg font-bold">
+                <span className="label-text text-black text-lg font-bold">
                   Email:
+                  {errors.email && <span className="mt-1 text-red-600">*</span>}
                 </span>
               </label>
               <input
                 type="email"
-                name="email"
                 placeholder="email"
-                className="input input-bordered setInput "
-                required
+                className="input input-bordered setInput"
+                {...register("email", { required: true })}
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-info text-lg font-bold">
+                <span className="label-text text-black text-lg font-bold">
                   Password:
+                  {errors.pwd?.type === "required" && (
+                    <span className="mt-1 text-red-600">*</span>
+                  )}
                 </span>
               </label>
               <input
                 type="password"
-                name="pass"
-                placeholder="password"
+                placeholder="Password"
                 className="input input-bordered setInput"
-                required
+                {...register("pwd", {
+                  required: true,
+                })}
               />
               <label className="label">
                 <Link to="/reset">
@@ -81,11 +88,7 @@ const Login = () => {
                 </Link>
               </label>
             </div>
-            {err && (
-              <>
-                <p className="text-sm text-red-600 mt-5">{err}</p>
-              </>
-            )}
+            {err && <span className="text-sm text-red-600 mt-5">{err}</span>}
             <div className="form-control m-5">
               <button type="submit" className="btn btn-info text-white">
                 Login

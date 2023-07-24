@@ -10,12 +10,13 @@ import Reset from "../components/pages/reset/Reset";
 import PrivateRoutes from "./PrivateRoutes";
 import Profile from "../components/pages/profile/Profile";
 import EditProfile from "../components/pages/profile/EditProfile";
+import Error from "../components/pages/error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    // errorElement: <Error />,
+    errorElement: <Error />,
 
     children: [
       {
